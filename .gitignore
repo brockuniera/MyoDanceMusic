@@ -1,0 +1,10 @@
+# Vim things: https://stackoverflow.com/questions/4824188/git-ignore-vim-temporary-files
+*~
+*.swp
+*.swo
+
+bin/
+build/
+
+#OSX things
+.DS_Store
