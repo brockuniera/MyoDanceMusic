@@ -56,3 +56,12 @@ float CircularBuffer::rollingAverage() {
 	return (total / num_of_slots_);
 }
 
+float CircularBuffer::findDerivative() {
+  float totalDerivative = 0.0;
+  for (int i = 0; i < num_of_slots_; i++) {
+    totalDerivative += read()/read();
+  }
+
+  return (totalDerivative/(num_of_slots_ - 1));
+}
+

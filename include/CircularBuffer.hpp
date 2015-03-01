@@ -21,6 +21,8 @@ public:
   void clear();
   // Computes the average
   float rollingAverage();
+  // Computes the derivative
+  float findDerivative();
 
 private:
   //array of integers
