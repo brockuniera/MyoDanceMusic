@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <myo/myo.hpp>
 #include "MidiPlayer.hpp"
+//#include "CircularBuffer.hpp"
 
 using namespace std;
 
@@ -22,10 +23,11 @@ class Person {
 		//TODO replace w/ ring buffer or something
 		float roll, pitch, yaw;
 		
-		//TODO probably remove
 		unsigned int timer;
 
 		unsigned char channel;
+
+		//CircularBuffer cb<float>(); //Doesnt exist yet
 	public:
 		Person(unsigned char chnl);
 
@@ -33,10 +35,8 @@ class Person {
 
 		//cool member functions
 		void setData(float, float, float);
-		void playNotes(void);
+		virtual void playNotes(void);
 		string toString();
-
-		bool hasStarted = false;
 };
 
 #endif
