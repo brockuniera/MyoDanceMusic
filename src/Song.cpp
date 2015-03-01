@@ -23,13 +23,15 @@ void Song::update(void) {
 		yaw.write(people->at(i).yaw);
 	}
 
-	float rollDerivative = roll.findDerivative();
-	float pitchDerivative = pitch.findDerivative();
-	float yawDerivative = yaw.findDerivative();
+	cout << roll.findDerivative() << endl;
 
-	intensity = ((rollDerivative + pitchDerivative + yawDerivative)/3);
+	//float rollDerivative = roll.findDerivative();
+	//float pitchDerivative = pitch.findDerivative();
+	//float yawDerivative = yaw.findDerivative();
 
-	cout << "Song intensity: " << intensity << endl;
+	//intensity = ((rollDerivative + pitchDerivative + yawDerivative)/3);
+
+	//cout << "Song intensity: " << intensity << endl;
 	
 }
 
