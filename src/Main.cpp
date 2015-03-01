@@ -7,6 +7,7 @@
 #include <mach/mach.h>
 
 #include <unistd.h> //usleep
+#include <stdlib.h>
 
 #include <myo/myo.hpp>
 
@@ -69,7 +70,7 @@ int main(int argc, char** argv)
 			//TODO allow changes in bpm :^)
 			//Play notes needs to happen every 16th note
 			unsigned int sixteenths = 125000;
-			usleep(sixteenths - microDiff);
+			usleep(/*abs*/(sixteenths - microDiff));
 
 			//let MidiPlayer stop notes
 			MidiPlayer::getInstance().stopNotes();
