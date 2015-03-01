@@ -1,39 +1,40 @@
+
 #include "MyoConnector.hpp"
 #define RAD_TO_ANGLE 180.0/3.14159
 
 using namespace std;
 using namespace myo;
 
-DataCollector::DataCollector(vector<Person>::iterator begin, vector<Person>::iterator end)
-: nextPerson(begin), peopleEnd(end) {/*nothing : ) */}
+DataCollector::DataCollector(vector<Person>& ppl) : peoples(ppl) {}
 
-void DataCollector::onPair(Myo* myo, uint64_t timestamp, FirmwareVersion firmwareVersion)
-{
+void DataCollector::onPair(Myo* myo, uint64_t timestamp, FirmwareVersion firmwareVersion) {
 	cout << "A Myo connected!" << endl;
+	
+	peoples.push_back(Person(peoples.size()));
 
-	if(nextPerson == peopleEnd){
-		cout << "No Persons left for Myos!" << endl;
-		return;
-	}
-	myomap[myo] = &(*nextPerson);
-	myomap[myo]->hasStarted = true;
-
-	nextPerson++;
-
+	myomap[myo] = &(peoples.back());
+	// myomap[myo]->hasStarted = true;
 }
 
-void DataCollector::onUnpair(Myo* myo, uint64_t timestamp)
-{
+void DataCollector::onUnpair(Myo* myo, uint64_t timestamp) {
 	cout << "Myo unpaired!" << endl;
-	myomap[myo]->hasStarted = false;
-	myomap.erase(myo);
+	vector<Person>::iterator iter;
+	for(iter = peoples.begin(); iter != peoples.end(); iter++) {
+		if (&(*iter) == myomap[myo]) {
+			//peoples.erase(iter);
+		}
+	}
 
-	nextPerson--;
+//	int positionToRemove = find(peoples.begin(), peoples.end(), *myomap[myo]) - peoples.begin();
+//	peoples.erase(peoples.begin() + positionToRemove);
+	
+	// myomap[myo]->hasStarted = false;
+	myomap.erase(myo);
 }
+
 // onOrientationData() is called whenever the Myo device provides its current orientation, which is represented
 // as a unit quaternion.
-void DataCollector::onOrientationData(Myo* myo, uint64_t timestamp, const Quaternion<float>& quat)
-{
+void DataCollector::onOrientationData(Myo* myo, uint64_t timestamp, const Quaternion<float>& quat) {
 	// Calculate Euler angles (roll, pitch, and yaw) from the unit quaternion.
 	float roll = RAD_TO_ANGLE * atan2(2.0f * (quat.w() * quat.x() + quat.y() * quat.z()),
 			1.0f - 2.0f * (quat.x() * quat.x() + quat.y() * quat.y()));
@@ -48,7 +49,6 @@ void DataCollector::onOrientationData(Myo* myo, uint64_t timestamp, const Quater
 
 	//give data to person
 	myomap[myo]->setData(roll, pitch, yaw);
-
 }
 
 /*
@@ -69,8 +69,6 @@ myo->unlock(Myo::unlockTimed);
 }
 }
 */
-
-
 
 //XXX REALLY DONT CARE :^)
 // onArmSync() is called whenever Myo has recognized a Sync Gesture after someone has put it on their

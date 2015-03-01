@@ -14,27 +14,30 @@
 #include "MyoConnector.hpp"
 #include "Person.hpp" 
 #include "MidiPlayer.hpp"
+#include "Song.hpp"
 
 
 #define SECOND_TO_MICRO	1000000 //one million
-#define NANO_TO_MICRO	(1.0/1000.0) //one over 1000
+#define NANO_TO_MICRO (1.0/1000.0) //one over 1000
 
 using std::cout;
 using std::cerr;
 using std::endl;
 
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv) {
 	//Create vector of Person
 	vector<Person> people;
+	Song song(people);
 	//Add 8 people
 	//TODO individualize perosons
+	
+	/*
 	for(int i = 0; i < 8; i++)
 		people.push_back(Person(i));
+	*/
 
 	//Instantiate DataCollector
-	DataCollector dc(people.begin(), people.end());
-
+	DataCollector dc(people);
 
 	//setup clocks
 	clock_serv_t cclock;
@@ -76,11 +79,14 @@ int main(int argc, char** argv)
 			MidiPlayer::getInstance().stopNotes();
 
 			//play notes
-			for(Person &p : people){
-				if(p.hasStarted){
+			for(Person &p : people) {
+				if(p.hasStarted) {
 					p.playNotes();
 				}
 			}
+
+			song.update();
+
 		}
 
 		// If a standard exception occurred, we print out its message and exit.

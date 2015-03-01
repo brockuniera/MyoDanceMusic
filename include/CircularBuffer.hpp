@@ -6,7 +6,8 @@
 // The class is not thread-safe,
 class CircularBuffer {
 public:
-
+	// Creates a buffer
+	CircularBuffer();
 	// Creates a buffer with 'slots' slots.
 	explicit CircularBuffer(int slots);
 	// Destructor.
@@ -23,6 +24,8 @@ public:
 	float rollingAverage();
 	// Computes the derivative
 	float findDerivative();
+	// Change the number of slots ~RPP
+	void setSlots(int);
 
 private:
 	//array of integers

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Person::Person(unsigned char chnl) : mp(MidiPlayer::getInstance()), channel(chnl){
+Person::Person(unsigned char chnl) : channel(chnl){
 	timer = 4;
 }
 
@@ -15,25 +15,25 @@ void Person::setData(float r, float p, float y) {
 	yaw = y;
 }
 
-float getRoll() {
+float Person::getRoll() {
 	return roll;
 }
 
-float getPitch() {
+float Person::getPitch() {
 	return pitch;
 }
 
-float getYaw() {
+float Person::getYaw() {
 	return yaw;
 }
 
-void Person::playNotes(void){
+void Person::playNotes(void) {
 	//TODO
 	if(channel == 1)
 		cout << pitch << "\t" << yaw << "\t" << roll << endl;
 
 	timer--;
-	if(timer != 0){
+	if(timer != 0) {
 		return;
 	}
 	timer = 2; //reset
@@ -45,7 +45,7 @@ void Person::playNotes(void){
 
 	//cout << "Person " << (int)channel << " note is :" << note << endl;
 
-	mp.playNote(note, channel, 1);
+	MidiPlayer::getInstance().playNote(note, channel, 1);
 
 }
 

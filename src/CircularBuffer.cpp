@@ -1,6 +1,11 @@
 
 #include "CircularBuffer.hpp"
 
+CircularBuffer::CircularBuffer() {
+	num_of_slots_ = 10; /*pre-assigned value */
+	clear();
+}
+
 CircularBuffer::CircularBuffer(int slots) {
 	if (slots <= 0) {
 	num_of_slots_ = 10; /*pre-assigned value */
@@ -63,4 +68,13 @@ float CircularBuffer::findDerivative() {
 	}
 	
 	return (totalDerivative/(num_of_slots_ - 1));
+}
+
+void CircularBuffer::setSlots(int s) {
+	if (s <= 0) {
+	num_of_slots_ = 10; /*pre-assigned value */
+	} else {
+		num_of_slots_ = s;
+	}
+	clear();
 }

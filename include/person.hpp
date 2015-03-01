@@ -16,8 +16,6 @@ using namespace std;
 
 class Person {
 	private:
-		MidiPlayer& mp;
-
 		//Internal state
 		//TODO replace w/ ring buffer or something
 		float roll, pitch, yaw;
