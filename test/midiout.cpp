@@ -63,40 +63,39 @@ int main(void)
 
 	do{
 		//Channel 1 Note On: 144, 64, 90
-		message[0] = 144; //channel command
-		message[1] = 64;  //note
-		message[2] = 90;  //velocity
-		midiout->sendMessage(&message);
+		//message[0] = 144; //channel command
+		//message[1] = 64;  //note
+		//message[2] = 90;  //velocity
+		//midiout->sendMessage(&message);
 
-		SLEEP(500);
+		//SLEEP(500);
 
-		// Channel 1 Note Off: 128, 64, 40
-		message[0] = 128;
-		message[1] = 64;
-		message[2] = 40;
-		midiout->sendMessage(&message);
+		//// Channel 1 Note Off: 128, 64, 40
+		//message[0] = 128;
+		//message[1] = 64;
+		//message[2] = 40;
+		//midiout->sendMessage(&message);
 
-		//puts("Wait...");
-		//SLEEP(1000);
-		//puts("...Now!");
+		for(int i = 0; i < 5; i++){
+			//test control buttons
+			//on
+			message[0] = 191;
+			message[1] = 117;
+			message[2] = 127;
+			midiout->sendMessage(&message);
 
-		//for(int i = 0; i < 5; i++){
-			////test control buttons
-			////on
-			//message[0] = 191;
-			//message[1] = 117;
-			//message[2] = 127;
-			//midiout->sendMessage(&message);
+			SLEEP(500);
 
-			//SLEEP(500);
-
-			////off
-			//message[0] = 191;
-			//message[1] = 117;
-			//message[2] = 127;
-			//midiout->sendMessage(&message);
-		//}
+			//off
+			message[0] = 191;
+			message[1] = 117;
+			message[2] = 127;
+			midiout->sendMessage(&message);
+		}
 		std::getline(std::cin, keyHit);
+		puts("Wait...");
+		SLEEP(1000);
+		puts("...Now!");
 	}while(keyHit != "q");
 	
 	//while(1){

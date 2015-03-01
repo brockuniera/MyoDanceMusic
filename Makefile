@@ -31,15 +31,17 @@ TARGET = bin/myodance
 SRCEXT = cpp
 SOURCES = $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS = $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CFLAGS = -g -Wall
+CLIBS = -framework myo -framework CoreMIDI -framework CoreAudio -framework CoreFoundation
+CFLAGS = -g -Wall -std=c++11 -D__MACOSX_CORE__
 INC = -I include
 
 $(TARGET): $(OBJECTS)
-	$(CC) $^ -o $(TARGET)
+	@mkdir -p bin
+	$(CC) $(CLIBS) $^ -o $(TARGET)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
-	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	$(CC) $(CLIBS) $(CFLAGS) $(INC) -c -o $@ $<
 
 .PHONY: clean
 clean:
