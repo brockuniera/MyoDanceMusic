@@ -23,6 +23,7 @@ void DataCollector::onPair(Myo* myo, uint64_t timestamp, FirmwareVersion firmwar
 
 void DataCollector::onUnpair(Myo* myo, uint64_t timestamp)
 {
+	cout << "Myo unpaired!" << endl;
 	myomap[myo]->hasStarted = false;
 	myomap.erase(myo);
 

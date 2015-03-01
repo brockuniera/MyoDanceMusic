@@ -23,7 +23,7 @@ class Person {
 		float roll, pitch, yaw;
 		
 		//TODO probably remove
-		int timer;
+		unsigned int timer;
 
 		unsigned char channel;
 	public:
