@@ -10,9 +10,6 @@ MidiPlayer &MidiPlayer::getInstance(){
 }
 
 void MidiPlayer::stopNotes(void){
-
-	std::cout << _notesToStop.size() << std::endl;
-
 	//iterate through, decrease length by one...
 	//remove and turn note off if 0
 	for(auto it = _notesToStop.begin(); it != _notesToStop.end(); it++){
