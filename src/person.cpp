@@ -16,7 +16,7 @@ void Person::setData(float r, float p, float y) {
 }
 
 void Person::playNotes(void){
-	--timer;
+	timer--;
 	cout << "Timer " << timer << endl;
 	if(timer != 0){
 		return;
@@ -30,7 +30,7 @@ void Person::playNotes(void){
 
 	cout << "Person " << (int)channel << " note is :" << note << endl;
 
-	mp.playNote(note, channel, 1);
+	mp.playNote(note, channel, 4);
 
 }
 

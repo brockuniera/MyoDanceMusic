@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 			MidiPlayer::getInstance().stopNotes();
 
 			//play notes
-			for(Person p : people){
+			for(Person &p : people){
 				if(p.hasStarted){
 					p.playNotes();
 				}
