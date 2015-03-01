@@ -29,7 +29,7 @@ void MidiPlayer::stopNotes(void){
 
 }
 
-void MidiPlayer::playNote(Note note, unsigned int channel, unsigned int length){		
+void MidiPlayer::playNote(char note, unsigned int channel, unsigned int length){		
 	if(note < 0){
 		std::cout << "Note is out of range (0 - 127)" << std::endl;
 		return;
