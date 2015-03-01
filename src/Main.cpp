@@ -24,7 +24,6 @@ int main(int argc, char** argv)
 		hub.addListener(&dc);
 	while (1) {
 		hub.run(1000/20);
-		dc.print();
 	}
 	// If a standard exception occurred, we print out its message and exit.
 	} catch (const exception& e) {
