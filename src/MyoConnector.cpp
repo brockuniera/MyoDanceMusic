@@ -1,4 +1,5 @@
 #include "MyoConnector.hpp"
+#define RAD_TO_ANGLE 180.0/3.14159
 
 using namespace std;
 using namespace myo;
@@ -34,17 +35,16 @@ void DataCollector::onUnpair(Myo* myo, uint64_t timestamp)
 void DataCollector::onOrientationData(Myo* myo, uint64_t timestamp, const Quaternion<float>& quat)
 {
 	// Calculate Euler angles (roll, pitch, and yaw) from the unit quaternion.
-	float roll = atan2(2.0f * (quat.w() * quat.x() + quat.y() * quat.z()),
+	float roll = RAD_TO_ANGLE * atan2(2.0f * (quat.w() * quat.x() + quat.y() * quat.z()),
 			1.0f - 2.0f * (quat.x() * quat.x() + quat.y() * quat.y()));
-	float pitch = asin(max(-1.0f, min(1.0f, 2.0f * (quat.w() * quat.y() - quat.z() * quat.x()))));
-	float yaw = atan2(2.0f * (quat.w() * quat.z() + quat.x() * quat.y()),
+	float pitch = RAD_TO_ANGLE * asin(max(-1.0f, min(1.0f, 2.0f * (quat.w() * quat.y() - quat.z() * quat.x()))));
+	float yaw = RAD_TO_ANGLE * atan2(2.0f * (quat.w() * quat.z() + quat.x() * quat.y()),
 			1.0f - 2.0f * (quat.y() * quat.y() + quat.z() * quat.z()));
 
-	//TODO
 	// Convert the floating point angles in radians to a scale from 0 to 18.
-	roll = static_cast<int>((roll + (float)M_PI)/(M_PI * 2.0f) * 24 + 50);
-	pitch = static_cast<int>((pitch + (float)M_PI/2.0f)/M_PI * 127);
-	yaw = static_cast<int>((yaw + (float)M_PI)/(M_PI * 2.0f) * 24 + 50);
+	//roll = static_cast<int>((roll + (float)M_PI)/(M_PI * 2.0f) * 24 + 50);
+	//pitch = static_cast<int>((pitch + (float)M_PI/2.0f)/M_PI * 127);
+	//yaw = static_cast<int>((yaw + (float)M_PI)/(M_PI * 2.0f) * 24 + 50);
 
 	//give data to person
 	myomap[myo]->setData(roll, pitch, yaw);

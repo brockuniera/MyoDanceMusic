@@ -4,7 +4,7 @@
 using namespace std;
 
 Person::Person(unsigned char chnl) : mp(MidiPlayer::getInstance()), channel(chnl){
-	timer = 8;
+	timer = 4;
 }
 
 Person::~Person() {}
@@ -16,21 +16,24 @@ void Person::setData(float r, float p, float y) {
 }
 
 void Person::playNotes(void){
+	//TODO
+	if(channel == 1)
+		cout << pitch << "\t" << yaw << "\t" << roll << endl;
+
 	timer--;
-	cout << "Timer " << timer << endl;
 	if(timer != 0){
 		return;
 	}
-	timer = 5; //reset
+	timer = 2; //reset
 
 	//TODO
 	//algorithms and shit go here
 
-	int note = (pitch/2) + 30; 
+	int note = (pitch/4) + 50; 
 
-	cout << "Person " << (int)channel << " note is :" << note << endl;
+	//cout << "Person " << (int)channel << " note is :" << note << endl;
 
-	mp.playNote(note, channel, 4);
+	mp.playNote(note, channel, 1);
 
 }
 

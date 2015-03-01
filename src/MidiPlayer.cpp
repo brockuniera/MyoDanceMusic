@@ -13,7 +13,6 @@ void MidiPlayer::stopNotes(void){
 	//iterate through, decrease length by one...
 	//remove and turn note off if 0
 	for(auto it = _notesToStop.begin(); it != _notesToStop.end(); it++){
-		std::cout << (int)it->first << std::endl;
 		if(--(it->second.second) <= 0){
 			//turn note off...
 			_message[0] = NOTE_OFF + it->second.first; //"Note Off" + channel
