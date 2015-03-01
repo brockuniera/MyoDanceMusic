@@ -35,6 +35,9 @@ class Person {
 		void setData(float, float, float);
 		void playNotes(void);
 		string toString();
+		float getRoll();
+		float getPitch();
+		float getYaw();
 
 		bool hasStarted = false;
 };

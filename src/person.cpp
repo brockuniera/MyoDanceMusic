@@ -15,6 +15,18 @@ void Person::setData(float r, float p, float y) {
 	yaw = y;
 }
 
+float getRoll() {
+	return roll;
+}
+
+float getPitch() {
+	return pitch;
+}
+
+float getYaw() {
+	return yaw;
+}
+
 void Person::playNotes(void){
 	//TODO
 	if(channel == 1)

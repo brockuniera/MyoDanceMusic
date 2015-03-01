@@ -18,8 +18,8 @@ void CircularBuffer::write(int value) {
 	data_[write_index_] = value;
 	if (read_index_ == -1) {
 	//if buffer is empty, set the read index to the 
- //current write index. because that will be the first 
- //slot to be read later.
+	//current write index. because that will be the first 
+	//slot to be read later.
 	read_index_ = write_index_; 
 	}
 	write_index_ = (write_index_ + 1) % num_of_slots_; 
@@ -64,4 +64,3 @@ float CircularBuffer::findDerivative() {
 	
 	return (totalDerivative/(num_of_slots_ - 1));
 }
-
