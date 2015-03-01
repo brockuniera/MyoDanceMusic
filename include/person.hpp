@@ -17,8 +17,6 @@ using namespace std;
 
 class Person {
 	private:
-		MidiPlayer& mp;
-
 		//Internal state
 		//TODO replace w/ ring buffer or something
 		float roll, pitch, yaw;
@@ -37,6 +35,11 @@ class Person {
 		void setData(float, float, float);
 		virtual void playNotes(void);
 		string toString();
+		float getRoll();
+		float getPitch();
+		float getYaw();
+
+		bool hasStarted = false;
 };
 
 #endif

@@ -23,15 +23,16 @@ class DataCollector : public DeviceListener {
 		map<Myo*, Person*> myomap;
 
 		//iterators
-		vector<Person>::iterator nextPerson;
-		vector<Person>::iterator peopleEnd;
-
+		// vector<Person>::iterator nextPerson;
+		// vector<Person>::iterator peopleEnd;
+		vector<Person>& peoples;
+		
 		//XXX Do we care??
 		//Pose currentPose;
 		//Arm whichArm;
 
 	public:
-		DataCollector(vector<Person>::iterator begin, vector<Person>::iterator end);
+		DataCollector(vector<Person>& ppl);
 		void onPair(Myo* myo, uint64_t timestamp, FirmwareVersion firmwareVersion);
 		void onUnpair(Myo* myo, uint64_t timestamp);
 		void onOrientationData(Myo* myo, uint64_t timestamp, const Quaternion<float>& quat);
