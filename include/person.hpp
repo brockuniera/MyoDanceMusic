@@ -18,11 +18,6 @@ class Person {
 	private:
 		MidiPlayer& mp;
 
-		//Internal state
-		//TODO replace w/ ring buffer or something
-		float roll, pitch, yaw;
-		
-		//TODO probably remove
 		unsigned int timer;
 
 		unsigned char channel;
@@ -30,6 +25,8 @@ class Person {
 		Person(unsigned char chnl);
 
 		~Person();
+
+		float roll, pitch, yaw;
 
 		//cool member functions
 		void setData(float, float, float);
