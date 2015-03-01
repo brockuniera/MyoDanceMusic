@@ -13,6 +13,7 @@
 #include "MyoConnector.hpp"
 #include "Person.hpp" 
 #include "MidiPlayer.hpp"
+#include "Song.hpp"
 
 
 #define SECOND_TO_MICRO	1000000 //one million
@@ -33,6 +34,9 @@ int main(int argc, char** argv)
 
 	//Instantiate DataCollector
 	DataCollector dc(people.begin(), people.end());
+
+	//Instantiate Song
+	Song song(&people);
 
 
 	//setup clocks
@@ -80,6 +84,9 @@ int main(int argc, char** argv)
 					p.playNotes();
 				}
 			}
+			//update song
+			song.update();
+
 		}
 
 		// If a standard exception occurred, we print out its message and exit.

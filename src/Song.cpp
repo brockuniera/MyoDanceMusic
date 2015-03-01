@@ -32,3 +32,6 @@ void Song::update(void) {
 	cout << "Song intensity: " << intensity << endl;
 	
 }
+
+Song::~Song(){}
+
