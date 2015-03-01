@@ -21,7 +21,7 @@ void DataCollector::onUnpair(Myo* myo, uint64_t timestamp) {
 	vector<Person>::iterator iter;
 	for(iter = peoples.begin(); iter != peoples.end(); iter++) {
 		if (&(*iter) == myomap[myo]) {
-			//peoples.erase(iter);
+			peoples.erase(iter);
 		}
 	}
 
