@@ -1,26 +1,22 @@
 # MyoDanceMusic
 Hack DFW
 
-A hack being developed at HackDFW that uses the Myo Armband to create music.
+A hack developed at HackDFW that uses the Myo Armband to create music with your friends.
 
-Team Members:
+#Team Members:
 
-Alex
+Alex Brockunier
 
-Ali
+Ali Khan
 
-Brandon
+Brandon Pearson
 
-Calvin
-
-Raj
+Raj Patel
 
 
-Libraries/Associated Programs
+#Libraries/Associated Programs:
 
 Myo API (https://developer.thalmic.com/docs/api_reference/platform/index.html)
-
-SDL2 (https://www.libsdl.org/download-2.0.php)
 
 RtMidi (https://github.com/thestk/rtmidi)
 
